@@ -1,0 +1,32 @@
+html,body{margin:0;padding:0}
+body{font: 100.01% "Trebuchet MS",Verdana,Arial,sans-serif;
+   background: #FFFFCC;
+   color: #555;
+   text-align:center;
+   }
+   
+h1{margin: 0;padding: 10px 0 10px 5px;font-size: 600%;color: #FF744C;}
+h2,h3,h4{margin:0;padding-left: 5px;padding-top:5px;line-height: 30px;color: #333;}
+h2{font-size: 170%}
+h3{font-size: 130%}
+h4{font-size: 120%}
+p{margin: 0 5px; padding: 0 0 0.7em}
+li{margin-left:10px}
+div#container{width:1000px; height: auto; margin: 0 auto; margin-top:40px;
+    background: url(images/3col.jpg) repeat-y;text-align:left;}
+div#header{background-color: #DBF8B4; width:1000px;  background-image: url(images/top-header-bg.jpg); background-repeat: no-repeat} /*di default background-position si colloca nell'angolo superiore sx, quindi non c'è bisongo di impostarlo (per la parte inferiore invece è necessario) */
+div#main{float:left;width:770px; height:auto}
+div#content{float:right;width:570px; height: auto; margin-left: auto}
+div#nav{float:left;width:200px; height: auto; font-size:85%}
+div#extra{float:right;width:220px;font-size:95%; margin-left: auto;}
+div#footer{clear:both;width:100%;padding-top:5px; background-color: #D0B4F8; background-image: url(images/bottom-footer-bg.jpg); background-repeat: no-repeat; background-position: bottom left}
+
+div#menu{ width: 1000px; height: 35px; background: #D0B4F8; padding-top:8px; font-size:130%}
+
+div.hr {
+  height: 30px;
+  background: #fff url(images/hr1.jpg) no-repeat scroll center;
+}
+div.hr hr {
+  display: none;
+}

@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^([^/]+)-([0-9]+)\.html$ blog.php?id_articolo=$2&titolo=$1 [L]

@@ -1,0 +1,68 @@
+REQUISITI - GESTIONE NEWS:
+# Scrittura Notizie, con titolo, categoria, keywords e data.
+# Gestione articoli, suddivisi per categoria.
+# Gestione parole chiave
+# Gestione utenti registrati.
+# Sistema per la gestione dei permessi dei vari utenti.
+# Possibilità di registrazione.
+# Scrittura di commenti da parte degli utenti sugli articoli.
+# Ottimizzazione e riscrittura URL (seo friendly). //apache mod_rewrite
+# Front End e pannello di gestione (Back End)
+# Possibilità di inserire link verso siti amici affiliati.
+
+
+Schema database:
+
+
+Info_sito(nome_sito, slogan, footer, articoli_per_pagina, reg_attiva, descrizione_sito, keywords_sito) //reg_attiva permette di attivare la possibilità di registrarsi
+Articoli(id_articolo, titolo, testo, meta_description, id_categoria, tags, id_autore, data, in_evidenza, pubblicato)
+Pagine(id_pagina, titolo, testo, ordine) //le pagine vengono mostrate nel menu
+Categorie(id_categoria, nome_categoria, descr_breve, visibile)
+Utenti(id_utente, username, nome, cognome, email, password, ruolo)
+Commenti(art_commentato, testo_commento, utente, data)
+Permessi(Ruolo, lettura, scrittura, pubblicazione, mod_utenti, mod_sito)  //mod_utenti permette di modificare gli utenti | mod_sito permette di modificare la tabella Info_sito, quindi le opzioni attinenti al sito 
+Link(nome_sito_amico, url, nuova_pagina, nofollow, visibile) //i siti amici che vengono visualizzati di default sulla sidebar di destra
+
+- Esempi di tuple per la tabella Permessi:
+Amministratore, 1, 1, 1, 1, 1
+Moderatore, 1, 1, 1, 1, 0
+Editore, 1, 1, 1, 0, 0        
+Autore, 1, 1, 0, 0, 0
+Lettore, 1, 0, 0, 0, 0        //tutti gli utenti possono leggere le notizie del sito, registrarsi implica dei vantaggi quali, la possibilità di lasciare commenti sugli articoli.
+
+E' stato definito un vincolo di integrità referenziale su commenti e articolo (art_commentato e id_articolo) poichè se viene cancellato un articolo, non ha senso mantenere i commenti ad esso abbinati.
+Query usata: ALTER TABLE commenti ADD FOREIGN KEY (art_commentato) REFERENCES articoli(id_articolo) ON DELETE CASCADE ON UPDATE NO ACTION ;
+
+Viene utilizzato un Modello a ruoli RBAC (role base access control) di tipo Gerarchico (Hierarchical).
+[VISIONE PANNELLO DI CONTROLLO]
+(Viene gestito in base ai permessi assegnati ad ogni ruolo). [Il sito si suddivide in 3 parti principali: MENU - CONTENT - SIDEBAR]
+
+Se lettura = 1 mostra in menu: Home
+Se scrittura = 1 mostra in menu: Scrivi Articolo
+Se pubblicazione = 1 mostra in menu: Gestisci articoli
+Se mod_utenti = 1 mostra in menu: Modifica utenti
+Se mod_sito = 1 mostra in menu: Opzioni Sito
+
+Chi possiede i permessi per: 
+
+mod_sito può modifcare la struttura del sito, compreso titolo, keywords principali, footer, le pagine (quindi il menu) e i link ai siti amici.
+
+mod_utenti può modificare i dati relativi agli utenti (username, password, email etc..)
+
+pubblicazione può scrivere e pubblicare articoli (anche quelli in bozze di altri utenti).
+
+scrittura può scrivere articoli (ma non ha il permesso di pubblicarli, verranno quindi passati prima in rassegna da un Editore/Moderatore/Amministratore abilitato alla pubblicazione)
+
+lettura può modificare alcune info del suo profilo, lasciare e visionare i commenti da lui pubblicati.
+
+
+In base ai permessi vengono mostrati i widget nelle sidebar laterali.
+Un utente con permessi di pubblicazione potrà ad esempio guardare nella sidebar SX gli articoli salvati in bozze (in revisione).
+
+Il Content di default varia anch'esso in base ai permessi:
+Chi è dotato del permesso (lettura) vedrà una semplice scritta: "Qui di seguito puoi modificare i tuoi dati personali: " ...
+Chi è dotato del permesso (scrittura) dispone di una tabella in cui sono mostrati: Articoli scritti da te con titolo, data, pubblicato [1/0] ...
+Chi è dotato del permesso (pubblicazione) può disporre di grafici che mostrano statistiche attinenti ad articoli, categorie (ex. numero di articoli in ogni categoria) e pagine.
+Chi è dotato del permesso (mod_utenti) può disporre di grafici che mostrano il numero di articoli associati ad ogni utente.
+Chi è dotato del permesso (mod_sito) può disporre di grafici relativi alle visualizzazioni di pagina e visitatori del sito (IN QUESTA PRIMA VERSIONE DEL CMS NON VERRà IMPLEMENTATA) ed una parte relativa alla modifica delle pagine
+

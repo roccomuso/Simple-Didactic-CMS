@@ -1,0 +1,103 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head> <!-- HEADER E SCRIPT JS -->
+<title>progetto database</title>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<META name="author" content="Rocco Musolino">
+<META name="description" content="progetto">
+<META name="keywords" content="rocco musolino, blog, cms, progetto">
+
+<link rel="shortcut icon" href="favicon.ico">
+<link href="style.css" rel="stylesheet" type="text/css">
+    <!-- inizio script e stile per login -->
+    <link rel="stylesheet" href="style-login.css" />
+    <script src="js/jquery.js"></script>
+    <script src="js/login.js"></script>
+	<!-- end script per login -->
+</head>
+
+<body>
+
+   <!-- Login Starts Here -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/it_IT/all.js#xfbml=1&appId=202296479810763";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+   <div id="bar">
+   <div style="width: 1000px; margin: 0 auto">
+	<span style="float: left">
+	
+	<fb:like send="true" width="450" show_faces="true"></fb:like>
+	</span>
+            <div id="loginContainer">
+                <a href="#" id="loginButton"><span>Login</span><em></em></a>
+                <div style="clear:both"></div>
+                <div id="loginBox">                
+                    <form id="loginForm">
+                        <fieldset id="body">
+                            <fieldset>
+                                <label for="email">Indirizzo Email</label>
+                                <input type="text" name="email" id="email" />
+                            </fieldset>
+                            <fieldset>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" />
+                            </fieldset>
+                            <input type="submit" id="login" value="Accedi" />
+                            <label for="checkbox"><input type="checkbox" id="checkbox" />Ricordamela</label>
+                        </fieldset>
+                        <span><a href="#">Password dimenticata?</a></span>
+                    </form>
+                </div>
+            </div>
+	  </div>
+	</div>
+   <!-- Login Ends Here -->
+<div id="container">
+
+<div id="header"><center><img src="images/Logo.png" border="0" /></center></div>
+<div id="menu"><center>HOME - CHI SIAMO - FAQ - CONTATTACI </center></div>
+<div id="main">
+
+	<div id="content">
+	<center><h2>Titolo</h2></center> <span><span style="float:left; margin-left:5px; color: grey">Scritto in: $categoria il $data</span><span style="float:right; margin-right:20px">pulsante SHARE</span></span>
+	<br/><br/><p>testo</p>
+	<span style="float:right; margin-right: 10px; color: grey"><em>autore</em></span><br/>
+	<hr size="1" color="#eeeeee">
+	<p><b>Tags</b>: tags</p>
+	<hr size="1" color="#eeeeee">
+	<h3>- Commenti:</h3>
+	<p>...commenti su questo articolo e form per immetterne di nuovi.</p>
+	</div>
+   
+    <div id="nav"> <!-- SIDEBAR Sinistra -->
+        <h3>Navigazione</h3>
+        <p>nav p1 nav p1 nav p1 p1 p1 nav p1 nav p1 nav p1 nav p1 nav p1 nav p1 nav p1.</p>
+        <p>nav p2 nav p2 nav p2 nav p2 nav p2 nav p2 nav p2 nav p2 nav p2 nav p2.</p>
+    </div>
+</div>
+   <div id="extra"> <!-- SIDEBAR Destra -->
+    <h3>Ultimi Commenti:</h3>
+    
+	<p>
+	
+	<span style="font-size: 12px;">[aaaa-mm-gg] <span style="color: red">Rocco</span> ha scritto:</span><br/>
+	<span style="font-size: 10px">"primi 50 caratteri" </span><br/>
+	<center><img src="images/pencil.png" /></center> <br/>
+	
+	</p>
+	
+    <p></p>
+   </div>
+  <div id="footer"> <!-- FOOTER -->
+   <center><p>footer</p></center>
+  </div>
+</div>
+</body>
+</html>
